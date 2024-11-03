@@ -465,7 +465,7 @@ class Glados:
                     headers=LLAMA_SERVER_HEADERS,
                     json=data,
                     stream=True,
-                ) as response:
+                timeout=60) as response:
                     sentence = []
                     for line in response.iter_lines():
                         if self.processing is False:
