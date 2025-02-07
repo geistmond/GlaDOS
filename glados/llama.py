@@ -39,7 +39,7 @@ class LlamaServer:
             attempts = 0
             while True:
                 try:
-                    response = requests.get("http://localhost:8080/health")
+                    response = requests.get("http://localhost:8080/health", timeout=60)
 
                     if response.status_code == 200:
                         return True
