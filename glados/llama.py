@@ -3,6 +3,7 @@ import subprocess
 import time
 
 import requests
+from security import safe_command
 
 
 class LlamaServer:
@@ -25,8 +26,7 @@ class LlamaServer:
         if use_gpu:
             command += ["-ngl", "1000"]
         print(command)
-        self.process = subprocess.Popen(
-            command,
+        self.process = safe_command.run(subprocess.Popen, command,
             cwd=self.llama_server_path,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
